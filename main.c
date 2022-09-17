@@ -10,14 +10,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx/mlx.h"
+#include "./lib/cub3D.h"
 
-int	main(void)
+static int	set_zero(t_proc *proc)
 {
-	void	*mlx;
-	void	*mlx_win;
+	proc->height = 0;
+	return (1);
+}
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Cub3D");
-	mlx_loop(mlx);
+static int	start_proc(t_proc *proc)
+{
+	proc->mlx = mlx_init();
+	proc->mlx_win = mlx_new_window(proc->mlx, 1920, 1080, "Cub3D");
+	mlx_loop(proc->mlx);
+	return (0);
+}
+
+static int	checker(char **av, t_proc proc)
+{
+	if (!mapcheck(av[1]))
+	{
+		printf("Wrong Map Error\n");
+		return (0);
+	}
+	if (!start_proc(&proc))
+		printf("Error\n");
+	return (0);
+}
+
+int	main(int ac, char **av)
+{
+	t_proc	proc;
+
+	if (ac == 2)
+	{
+		set_zero(&proc);
+		checker(av, proc);
+	}
+	return (0);
 }
