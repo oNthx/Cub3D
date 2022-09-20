@@ -17,6 +17,7 @@
 
 int		mapcheck(char *map);
 int		check_imgs(void);
+void	map_character_check(t_proc *proc);
 
 //function.c
 

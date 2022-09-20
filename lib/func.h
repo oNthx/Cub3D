@@ -23,6 +23,9 @@ typedef struct s_proc
 	int		row_cnt;
 	int		row_len;
 	int		new_cnt;
+	int		c_arg;
+	int		c_idx;
+	int		char_cnt;
 }		t_proc;
 
 #endif

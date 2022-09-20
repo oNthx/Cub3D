@@ -34,6 +34,7 @@ static int	checker(char **av, t_proc *proc)
 		return (0);
 	}
 	map_read(proc, av[1]);
+	map_character_check(proc);
 	if (!start_proc(proc))
 		printf("Error\n");
 	return (0);
@@ -43,7 +44,7 @@ int	main(int ac, char **av)
 {
 	t_proc	proc;
 
-	if (ac == 2)// && !check_imgs())
+	if (ac == 2 && !check_imgs())
 	{
 		set_zero(&proc);
 		checker(av, &proc);

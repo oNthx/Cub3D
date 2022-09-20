@@ -32,13 +32,49 @@ int	check_imgs(void)
 {
 	int	fd;
 
-	fd = open("./xpm/W.xpm", O_RDONLY) == -1;
-	fd |= open("./xpm/S.xpm", O_RDONLY) == -1;
-	fd |= open("./xpm/A.xpm", O_RDONLY) == -1;
-	fd |= open("./xpm/D.xpm", O_RDONLY) == -1;
-	fd |= open("./xpm/C.xpm", O_RDONLY) == -1;
-	fd |= open("./xpm/B.xpm", O_RDONLY) == -1;
-	fd |= open("./xpm/M.xpm", O_RDONLY) == -1;
-	fd |= open("./xpm/E.xpm", O_RDONLY) == -1;
+	fd = open("./xpm/NO.xpm", O_RDONLY) == -1;
+	fd |= open("./xpm/SO.xpm", O_RDONLY) == -1;
+	fd |= open("./xpm/WE.xpm", O_RDONLY) == -1;
+	fd |= open("./xpm/EA.xpm", O_RDONLY) == -1;
 	return (fd);
+}
+
+static void	check_charif(t_proc *proc)
+{
+	if (proc->char_cnt == 0)
+	{
+		printf("no character start direction Error\n");
+		exit(1);
+	}
+	else if (proc->char_cnt >= 2)
+	{
+		printf("character start direction too much Error\n");
+		exit(1);
+	}
+}
+
+void	map_character_check(t_proc *proc)
+{
+	while (proc->map[proc->c_arg])
+	{
+		proc->c_idx = 0;
+		while (proc->map[proc->c_arg][proc->c_idx])
+		{
+			if (proc->map[proc->c_arg] \
+				[proc->c_idx] == 'N')
+			proc->char_cnt += 1;
+			else if (proc->map[proc->c_arg] \
+					[proc->c_idx] == 'E')
+			proc->char_cnt += 1;
+			else if (proc->map[proc->c_arg] \
+					[proc->c_idx] == 'S')
+			proc->char_cnt += 1;
+			else if (proc->map[proc->c_arg] \
+					[proc->c_idx] == 'W')
+			proc->char_cnt += 1;
+			proc->c_idx++;
+		}
+		proc->c_arg++;
+	}
+	check_charif(proc);
 }
