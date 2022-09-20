@@ -14,6 +14,9 @@
 # define CUB3D_H
 
 # include <stdio.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
 # include "func.h"
 # include "../mlx/mlx.h"
 # include "source.h"

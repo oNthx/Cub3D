@@ -17,7 +17,12 @@ typedef struct s_proc
 {
 	void	*mlx;
 	void	*mlx_win;
+	void	**img_path;
+	char	**map;
 	int		height;
+	int		row_cnt;
+	int		row_len;
+	int		new_cnt;
 }		t_proc;
 
 #endif

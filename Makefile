@@ -3,7 +3,7 @@ CFLAGS			=	-Wall -Wextra -Werror -Imlx
 NAME			=	cub3D
 RM				=	rm -rf
 LMLX_M			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
-SOURCE			=	main.c mapcheck.c\
+SOURCE			=	main.c mapcheck.c function.c mapread.c\
 					
 					
 

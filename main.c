@@ -26,14 +26,15 @@ static int	start_proc(t_proc *proc)
 	return (0);
 }
 
-static int	checker(char **av, t_proc proc)
+static int	checker(char **av, t_proc *proc)
 {
 	if (!mapcheck(av[1]))
 	{
 		printf("Wrong Map Error\n");
 		return (0);
 	}
-	if (!start_proc(&proc))
+	map_read(proc, av[1]);
+	if (!start_proc(proc))
 		printf("Error\n");
 	return (0);
 }
@@ -42,10 +43,12 @@ int	main(int ac, char **av)
 {
 	t_proc	proc;
 
-	if (ac == 2)
+	if (ac == 2)// && !check_imgs())
 	{
 		set_zero(&proc);
-		checker(av, proc);
+		checker(av, &proc);
 	}
+	else
+		printf("Missing argument or picture extension!! Error\n");
 	return (0);
 }
