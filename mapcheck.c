@@ -43,12 +43,12 @@ static void	check_charif(t_proc *proc)
 {
 	if (proc->char_cnt == 0)
 	{
-		printf("no character start direction Error\n");
+		printf("Error\nNo character start direction\n");
 		exit(1);
 	}
 	else if (proc->char_cnt >= 2)
 	{
-		printf("character start direction too much Error\n");
+		printf("Error\nCharacter start direction too much\n");
 		exit(1);
 	}
 }

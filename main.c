@@ -30,13 +30,13 @@ static int	checker(char **av, t_proc *proc)
 {
 	if (!mapcheck(av[1]))
 	{
-		printf("Wrong Map Error\n");
+		printf("Error\nWrong Map\n");
 		return (0);
 	}
 	map_read(proc, av[1]);
 	map_character_check(proc);
 	if (!start_proc(proc))
-		printf("Error\n");
+		printf("Error\nGame is not start");
 	return (0);
 }
 
@@ -50,6 +50,6 @@ int	main(int ac, char **av)
 		checker(av, &proc);
 	}
 	else
-		printf("Missing argument or picture extension!! Error\n");
+		printf("Error\nMissing argument or picture extension!!\n");
 	return (0);
 }

@@ -20,7 +20,7 @@ void	map_read(t_proc *proc, char *av)
 	fd = open(av, O_RDONLY);
 	while (fd < 0)
 	{
-		printf("Map Not Found!! Error\n");
+		printf("Error\nMap Not Found!!\n");
 		exit(1);
 	}
 	map = get_map(fd, av);
@@ -70,7 +70,7 @@ int	map_len(char *av)
 	close(fd);
 	if (m_cnt == 0)
 	{
-		printf("Could not read file!! Error\n");
+		printf("Error\nCould not read file!!\n");
 		exit(0);
 	}
 	return (m_cnt);

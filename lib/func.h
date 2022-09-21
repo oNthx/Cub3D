@@ -13,6 +13,23 @@
 #ifndef FUNC_H
 # define FUNC_H
 
+typedef struct s_kbd
+{
+	int	w;
+	int	s;
+	int	a;
+	int	d;
+	int	r;
+	int	l;
+}	t_kbd;
+
+typedef struct s_rpg
+{
+	int		rpg_r;
+	int		rpg_p;
+	int		rpg_g;
+}		t_rpg;
+
 typedef struct s_proc
 {
 	void	*mlx;
@@ -26,6 +43,9 @@ typedef struct s_proc
 	int		c_arg;
 	int		c_idx;
 	int		char_cnt;
+	t_rpg	f_rpg;
+	t_rpg	c_rpg;
+	t_kbd	button;
 }		t_proc;
 
 #endif
