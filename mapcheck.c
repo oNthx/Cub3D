@@ -28,53 +28,57 @@ int	mapcheck(char *map)
 		return (0);
 }
 
-int	check_imgs(void)
+void	check_img(char *av)
 {
 	int	fd;
 
-	fd = open("./xpm/NO.xpm", O_RDONLY) == -1;
-	fd |= open("./xpm/SO.xpm", O_RDONLY) == -1;
-	fd |= open("./xpm/WE.xpm", O_RDONLY) == -1;
-	fd |= open("./xpm/EA.xpm", O_RDONLY) == -1;
-	return (fd);
+	fd = open(av, O_RDONLY);
+	if (fd != -1)
+		close(fd);
+	else if (fd == -1)
+	{
+		printf("Error\nPicture is not\n");
+		close(fd);
+		exit(1);
+	}
 }
 
-static void	check_charif(t_proc *proc)
+static void	check_charif(t_gmap *g_map)
 {
-	if (proc->char_cnt == 0)
+	if (g_map->char_cnt == 0)
 	{
 		printf("Error\nNo character start direction\n");
 		exit(1);
 	}
-	else if (proc->char_cnt >= 2)
+	else if (g_map->char_cnt >= 2)
 	{
 		printf("Error\nCharacter start direction too much\n");
 		exit(1);
 	}
 }
 
-void	map_character_check(t_proc *proc)
+void	map_character_check(t_gmap *g_map)
 {
-	while (proc->map[proc->c_arg])
+	while (g_map->map[g_map->c_arg])
 	{
-		proc->c_idx = 0;
-		while (proc->map[proc->c_arg][proc->c_idx])
+		g_map->c_idx = 0;
+		while (g_map->map[g_map->c_arg][g_map->c_idx])
 		{
-			if (proc->map[proc->c_arg] \
-				[proc->c_idx] == 'N')
-			proc->char_cnt += 1;
-			else if (proc->map[proc->c_arg] \
-					[proc->c_idx] == 'E')
-			proc->char_cnt += 1;
-			else if (proc->map[proc->c_arg] \
-					[proc->c_idx] == 'S')
-			proc->char_cnt += 1;
-			else if (proc->map[proc->c_arg] \
-					[proc->c_idx] == 'W')
-			proc->char_cnt += 1;
-			proc->c_idx++;
+			if (g_map->map[g_map->c_arg] \
+				[g_map->c_idx] == 'N')
+			g_map->char_cnt += 1;
+			else if (g_map->map[g_map->c_arg] \
+					[g_map->c_idx] == 'E')
+			g_map->char_cnt += 1;
+			else if (g_map->map[g_map->c_arg] \
+					[g_map->c_idx] == 'S')
+			g_map->char_cnt += 1;
+			else if (g_map->map[g_map->c_arg] \
+					[g_map->c_idx] == 'W')
+			g_map->char_cnt += 1;
+			g_map->c_idx++;
 		}
-		proc->c_arg++;
+		g_map->c_arg++;
 	}
-	check_charif(proc);
+	check_charif(g_map);
 }

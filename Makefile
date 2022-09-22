@@ -3,7 +3,8 @@ CFLAGS			=	-Wall -Wextra -Werror -Imlx
 NAME			=	cub3D
 RM				=	rm -rf
 LMLX_M			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
-SOURCE			=	main.c mapcheck.c function.c mapread.c\
+SOURCE			=	main.c mapcheck.c function.c function2.c mapread.c mapread2.c\
+					set_zero.c\
 					
 					
 
@@ -24,7 +25,7 @@ $(NAME):			$(OBJECT)
 
 %.o:		%.c
 					$(CC) -c $(CFLAGS) -o $@ $<
-					@printf "$(GREEN)██"
+					@printf "$(GREEN)"
 					
 clean: 				
 					@echo "\n$(RED)===> Cleanning OBJS$(END)"

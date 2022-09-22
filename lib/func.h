@@ -13,6 +13,14 @@
 #ifndef FUNC_H
 # define FUNC_H
 
+typedef struct s_gmap
+{
+	char	**map;
+	int		c_arg;
+	int		c_idx;
+	int		char_cnt;
+}	t_gmap;
+
 typedef struct s_kbd
 {
 	int	w;
@@ -30,22 +38,30 @@ typedef struct s_rpg
 	int		rpg_g;
 }		t_rpg;
 
+typedef struct s_img
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+}		t_img;
+
 typedef struct s_proc
 {
 	void	*mlx;
 	void	*mlx_win;
 	void	**img_path;
 	char	**map;
-	int		height;
 	int		row_cnt;
 	int		row_len;
 	int		new_cnt;
 	int		c_arg;
 	int		c_idx;
-	int		char_cnt;
 	t_rpg	f_rpg;
 	t_rpg	c_rpg;
-	t_kbd	button;
+	t_kbd	kbd;
+	t_img	img;
+	t_gmap	g_map;
 }		t_proc;
 
 #endif

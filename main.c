@@ -12,12 +12,6 @@
 
 #include "./lib/cub3D.h"
 
-static int	set_zero(t_proc *proc)
-{
-	proc->height = 0;
-	return (1);
-}
-
 static int	start_proc(t_proc *proc)
 {
 	proc->mlx = mlx_init();
@@ -34,7 +28,8 @@ static int	checker(char **av, t_proc *proc)
 		return (0);
 	}
 	map_read(proc, av[1]);
-	map_character_check(proc);
+	map_trans_rpg_img_gmap(proc);
+	map_character_check(&proc->g_map);
 	if (!start_proc(proc))
 		printf("Error\nGame is not start");
 	return (0);
@@ -44,7 +39,7 @@ int	main(int ac, char **av)
 {
 	t_proc	proc;
 
-	if (ac == 2 && !check_imgs())
+	if (ac == 2)
 	{
 		set_zero(&proc);
 		checker(av, &proc);
