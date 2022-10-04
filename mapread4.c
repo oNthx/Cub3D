@@ -112,7 +112,7 @@ t_proc	*g_mapexportintmap(t_proc *proc)
 				idx = ft_atoic(cmap[i][j]);
 			//else if (cmap[i][j] == ' ')			|
 			//	idx = 0;							|   Because of set2zero complete it's
-			//imap[i][j] = idx;						|
+			imap[i][j] = idx;
 			j++;
 		}
 		i++;
