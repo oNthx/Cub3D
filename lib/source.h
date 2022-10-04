@@ -6,7 +6,7 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 14:57:35 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/09/17 14:57:37 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/04 16:17:33 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,15 @@ int		button_up(int key, t_proc *proc);
 int		button_down(int key, t_proc *proc);
 void	button_assignment(t_proc *proc);
 
+//key_camera.c
+void	camera_right(t_proc *proc);
+void	camera_left(t_proc *proc);
 
-
+//key_move.c
+void	key_forward(t_proc *proc, int iMap[24][24]);
+void	key_backward(t_proc *proc, int iMap[24][24]);
+void	key_right(t_proc *proc, int iMap[24][24]);
+void	key_left(t_proc *proc, int iMap[24][24]);
 
 // kontorl edilecek
 int		key_press(t_proc *proc);

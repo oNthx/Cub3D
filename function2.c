@@ -18,6 +18,8 @@ int	ft_strcmp(const char *s1, const char *s2)
 	{
 		if (s1[1] == s2[1] && s1[1] != ' ')
 			return (1);
+		else
+			return (0);
 	}
 	return (0);
 }
