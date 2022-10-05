@@ -81,13 +81,13 @@ int	iMap[24][24] =
 int	key_press(t_proc *proc)
 {
 	if (proc->kbd.w == 1)
-		key_forward(proc, iMap);
+		key_forward(proc);
 	if (proc->kbd.s == 1)
-		key_backward(proc, iMap);
+		key_backward(proc);
 	if (proc->kbd.d == 1)
-		key_right(proc, iMap);
+		key_right(proc);
 	if (proc->kbd.a == 1)
-		key_left(proc, iMap);
+		key_left(proc);
 	if (proc->kbd.r == 1)
 		camera_right(proc);
 	if (proc->kbd.l == 1)
@@ -107,16 +107,15 @@ int	print_map(t_proc *s_data)
 	x = 0;
 		if (s_data->g_plyr.cam_y == 0)
 		{
-			s_data->g_plyr.loc_x = 12;
-			s_data->g_plyr.loc_y = 5;
+			s_data->g_plyr.loc_x = 5;
+			s_data->g_plyr.loc_y = 12;
 			s_data->g_plyr.dir_x = -1;
 			s_data->g_plyr.dir_y = 0;
 			s_data->g_plyr.cam_x = 0;
 			s_data->g_plyr.cam_y = 0.66;
-			s_data->g_plyr.movespd = 0.09;
-			s_data->g_plyr.rotspd = 0.09;
+			s_data->g_plyr.movespd = 0.05;
+			s_data->g_plyr.rotspd = 0.05;
 		}
-
 	while (x < WIDTH)
 	{
 
@@ -144,39 +143,46 @@ int	print_map(t_proc *s_data)
 		{
 			stepX = 1;
 			sideDistX = (mapX + 1.0 - s_data->g_plyr.loc_x) * deltaDistX;
+
 		}
 		if (rayDirY < 0)
 		{
 			stepY = -1;
 			sideDistY = (s_data->g_plyr.loc_y - mapY) * deltaDistY;
+
 		}
 		else
 		{
 			stepY = 1;
 			sideDistY = (mapY + 1.0 - s_data->g_plyr.loc_y) * deltaDistY;
+
 		}
+		
 		while (hit == 0)
 		{
+
 			if (sideDistX < sideDistY)
 			{
 				sideDistX += deltaDistX;
 				mapX += stepX;
 				side = 0;
+
 			}
 			else
 			{
 				sideDistY += deltaDistY;
 				mapY += stepY;
 				side = 1;
+
 			}
-			if (iMap[mapX][mapY] == 1)//(s_data->g_map.mapi[mapX][mapY] > 0)
+			if (s_data->g_map.mapi[mapX][mapY] == 1)//(s_data->g_map.mapi[mapX][mapY] > 0)
 				hit = 1;
 		}
 		if (side == 0)
 			perpWallDist = (mapX - s_data->g_plyr.loc_x + (1 - stepX) / 2) / rayDirX;
 		else
 			perpWallDist = (mapY - s_data->g_plyr.loc_y + (1 - stepY) / 2) / rayDirY;
-
+			
 		int lineHeight = (int)(HEIGHT / perpWallDist);
 		int drawStart = -lineHeight / 2 + HEIGHT / 2;
 		if (drawStart < 0)
@@ -186,6 +192,7 @@ int	print_map(t_proc *s_data)
 			drawEnd = HEIGHT - 1;
 
 		double wallX;
+		
 		if (side == 0)
 			wallX = s_data->g_plyr.loc_y + perpWallDist * rayDirY;
 		else
@@ -210,35 +217,10 @@ int	print_map(t_proc *s_data)
 		}
 		x++;
 	}
+
 	mlx_put_image_to_window(s_data->mlx, s_data->mlx_win, s_data->screen_img, 0, 0);
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 int	game_render(t_proc *proc)
 {

@@ -24,7 +24,7 @@ all: 				$(NAME)
 $(NAME):			$(OBJECT)
 					@echo "$(YELLOW)Compiling...$(END)"
 					@$(MAKE) -C $(C_MLXC)
-					@$(CC) $(CFLAGS) $(OBJECT) $(MLXM) -o ${NAME}
+					@$(CC) $(CFLAGS) $(OBJECT) $(MLXM) -o ${NAME} 
 					@echo "$(GREEN)===>Done<===$(END)"	
 
 %.o:		%.c

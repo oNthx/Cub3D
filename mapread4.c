@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "./lib/cub3D.h"
-#include <string.h> //FOR bzero
-
-void	poles_casting(char **cmap);
 
 int	frgbtrans(char **rgbno)
 {
@@ -34,7 +31,7 @@ int	crgbtrans(char **rgbno)
 	rgbnu = ft_atoi(crgb);
 	return (rgbnu);
 }
-
+#include <string.h>
 static int	g_maptointmap(t_proc *proc)
 {
 	int	i;
@@ -64,20 +61,18 @@ static int	g_maptointmap(t_proc *proc)
 	return (idx + tab);
 }
 
+/*
 static int	*set2zero(int *map_line, int idx)
 {
-	int		*tmp;
-
 	map_line = (int *)malloc(sizeof(int) * (idx + 1));
 	if (!map_line)
 		return (0);
-	tmp = map_line;
-	while (*tmp)
-		bzero(tmp++, idx);  //FORBIDDEN FUCNTION bzero !!!
+	bzero(map_line, idx);  //FORBIDDEN FUCNTION bzero !!!
+//	printf("\naddress of map_line == %p  ", &map_line);
 	return (map_line);
 }	
-
-t_proc	*g_mapexportintmap(t_proc *proc)
+*/
+void	g_mapexportintmap(t_proc *proc)
 {	
 	int		idx;
 	int		i;
@@ -89,59 +84,40 @@ t_proc	*g_mapexportintmap(t_proc *proc)
 	j = 0;
 	cmap = proc->g_map.map;
 	idx = g_maptointmap(proc);
-	while (cmap[i])
-		i++;
 	imap = (int **)malloc(sizeof(int *) * (idx + 1));
-	if (!imap)
-		return (0);
-	while (i)
+	while (j < idx)
 	{
-		imap[j] = set2zero(imap[j], idx);
-		i--;
+		imap[j] = malloc(sizeof(int) * (idx + 1));
 		j++;
 	}
-	while (cmap[i][j])
+	i = 0;
+	while (cmap[i])
 	{
 		j = 0;
 		while (cmap[i][j])
 		{
-			if (cmap[i][j] == 'N' || cmap[i][j] == 'S' \
-					|| cmap[i][j] == 'W' || cmap[i][j] == 'E')
-				poles_casting(cmap);
-			if (cmap[i][j] >= '0' && cmap[i][j] <= '5')
-				idx = ft_atoic(cmap[i][j]);
-			//else if (cmap[i][j] == ' ')			|
-			//	idx = 0;							|   Because of set2zero complete it's
+			if ((cmap[i][j] == 'N' || cmap[i][j] == 'S' || cmap[i][j] == 'W' || cmap[i][j] == 'E' || cmap[i][j] == ' '))
+				cmap[i][j] = poles_casting(cmap[i][j]);
+			idx = ft_atoic(cmap[i][j]);
 			imap[i][j] = idx;
 			j++;
 		}
 		i++;
 	}
 	proc->g_map.mapi = imap;
-	return (proc);
 }
 
-void	poles_casting(char **cmap)
+char	poles_casting(char cmap)
 {
-	int		idx;
-	int		jdx;
-
-	idx = 0;
-	jdx = 0;
-	while (cmap[idx])
-	{
-		while (cmap[idx][jdx])
-		{
-			if (cmap[idx][jdx] == 'E')
-				cmap[idx][jdx] = '2';
-			else if (cmap[idx][jdx] == 'W')
-				cmap[idx][jdx] = '3';
-			else if (cmap[idx][jdx] == 'N')
-				cmap[idx][jdx] = '4';
-			else if (cmap[idx][jdx] == 'S')
-				cmap[idx][jdx] = '5';
-			jdx++;
-		}
-		idx++;
-	}
+	if (cmap == 'E')
+		cmap = '2';
+	else if (cmap == 'W')
+		cmap = '3';
+	else if (cmap == 'N')
+		cmap = '4';
+	else if (cmap == 'S')
+		cmap = '5';
+	else
+		cmap = '0';
+	return (cmap);
 }

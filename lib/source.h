@@ -6,7 +6,7 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 14:57:35 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/10/04 16:17:33 by bozgur           ###   ########.fr       */
+/*   Updated: 2022/09/17 14:57:37 by aozcelik         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 //sort code
 # define WIDTH 1920
 # define HEIGHT 1080
-# define IMG_WIDTH 600
-# define IMG_HEIGHT 300
+# define IMG_WIDTH 64
+# define IMG_HEIGHT 64
 
 //mapcheck.c
 
@@ -66,7 +66,8 @@ void	gmap_wall_oc_check(t_proc *proc);
 //mapread4.c
 int		frgbtrans(char **rgbno);
 int		crgbtrans(char **rgbno);
-t_proc	*g_mapexportintmap(t_proc *proc);
+char	poles_casting(char cmap);
+void	g_mapexportintmap(t_proc *proc);
 
 //game_build.c
 int		game_render(t_proc *proc);
@@ -90,10 +91,10 @@ void	camera_right(t_proc *proc);
 void	camera_left(t_proc *proc);
 
 //key_move.c
-void	key_forward(t_proc *proc, int iMap[24][24]);
-void	key_backward(t_proc *proc, int iMap[24][24]);
-void	key_right(t_proc *proc, int iMap[24][24]);
-void	key_left(t_proc *proc, int iMap[24][24]);
+void	key_forward(t_proc *proc);
+void	key_backward(t_proc *proc);
+void	key_right(t_proc *proc);
+void	key_left(t_proc *proc);
 
 // kontorl edilecek
 int		key_press(t_proc *proc);
