@@ -6,11 +6,11 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:39:23 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/09/26 14:39:25 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/05 19:54:00 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lib/cub3D.h"
+#include "../lib/cub3D.h"
 
 void	gmap_control(t_proc *proc)
 {

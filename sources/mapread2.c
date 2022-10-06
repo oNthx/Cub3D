@@ -6,11 +6,11 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 15:08:23 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/09/22 15:08:24 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/05 19:54:06 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lib/cub3D.h"
+#include "../lib/cub3D.h"
 
 static int	check_map_in(char *map, int ac)
 {

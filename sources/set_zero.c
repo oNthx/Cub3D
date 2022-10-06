@@ -6,11 +6,11 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:46:59 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/09/22 14:47:01 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/05 19:54:29 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lib/cub3D.h"
+#include "../lib/cub3D.h"
 
 static	void	proc_zero(t_proc *proc)
 {

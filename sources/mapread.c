@@ -6,11 +6,11 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 11:55:49 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/09/20 11:55:50 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/05 19:53:54 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lib/cub3D.h"
+#include "../lib/cub3D.h"
 
 void	map_read(t_proc *proc, char *av)
 {

@@ -6,11 +6,11 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 14:08:17 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/10/01 14:08:19 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/05 19:52:23 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lib/cub3D.h"
+#include "../lib/cub3D.h"
 
 int	ft_exit(void *tmp)
 {
@@ -51,6 +51,27 @@ int	button_down(int key, t_proc *proc)
 		proc->kbd.l = 0;
 	else if (key == 124)
 		proc->kbd.r = 0;
+	return (0);
+}
+
+int	key_press(t_proc *proc)
+{
+	if (proc->kbd.w == 1)
+		key_forward(proc);
+	if (proc->kbd.s == 1)
+		key_backward(proc);
+	if (proc->kbd.d == 1)
+		key_right(proc);
+	if (proc->kbd.a == 1)
+		key_left(proc);
+	if (proc->kbd.r == 1)
+		camera_right(proc);
+	if (proc->kbd.l == 1)
+		camera_left(proc);
+	mlx_clear_window(proc->mlx, proc->mlx_win);
+	f_rgb_up_color(proc);
+	c_rgb_down_color(proc);
+	print_map(proc);
 	return (0);
 }
 

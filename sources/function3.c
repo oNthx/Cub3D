@@ -6,11 +6,11 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 16:13:04 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/09/29 16:13:05 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/05 19:52:46 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lib/cub3D.h"
+#include "../lib/cub3D.h"
 
 int	ft_strlen(const char *str)
 {

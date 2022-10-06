@@ -6,11 +6,11 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:01:13 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/10/03 16:01:14 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/05 19:54:19 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lib/cub3D.h"
+#include "../lib/cub3D.h"
 
 int	frgbtrans(char **rgbno)
 {
@@ -31,7 +31,7 @@ int	crgbtrans(char **rgbno)
 	rgbnu = ft_atoi(crgb);
 	return (rgbnu);
 }
-#include <string.h>
+
 static int	g_maptointmap(t_proc *proc)
 {
 	int	i;
@@ -61,22 +61,11 @@ static int	g_maptointmap(t_proc *proc)
 	return (idx + tab);
 }
 
-/*
-static int	*set2zero(int *map_line, int idx)
-{
-	map_line = (int *)malloc(sizeof(int) * (idx + 1));
-	if (!map_line)
-		return (0);
-	bzero(map_line, idx);  //FORBIDDEN FUCNTION bzero !!!
-//	printf("\naddress of map_line == %p  ", &map_line);
-	return (map_line);
-}	
-*/
 void	g_mapexportintmap(t_proc *proc)
 {	
-	int		idx;
 	int		i;
 	int		j;
+	int		idx;
 	int		**imap;
 	char	**cmap;
 
@@ -91,33 +80,32 @@ void	g_mapexportintmap(t_proc *proc)
 		j++;
 	}
 	i = 0;
-	while (cmap[i])
-	{
-		j = 0;
-		while (cmap[i][j])
-		{
-			if ((cmap[i][j] == 'N' || cmap[i][j] == 'S' || cmap[i][j] == 'W' || cmap[i][j] == 'E' || cmap[i][j] == ' '))
-				cmap[i][j] = poles_casting(cmap[i][j]);
-			idx = ft_atoic(cmap[i][j]);
-			imap[i][j] = idx;
-			j++;
-		}
-		i++;
-	}
+	poles_casting(cmap, imap);
 	proc->g_map.mapi = imap;
 }
 
-char	poles_casting(char cmap)
+void	poles_casting(char **cmap, int **imap)
 {
-	if (cmap == 'E')
-		cmap = '2';
-	else if (cmap == 'W')
-		cmap = '3';
-	else if (cmap == 'N')
-		cmap = '4';
-	else if (cmap == 'S')
-		cmap = '5';
-	else
-		cmap = '0';
-	return (cmap);
+	int	idx;
+	int	jdx;
+
+	idx = 0;
+	jdx = 0;
+	while (cmap[idx])
+	{
+		jdx = 0;
+		while (cmap[idx][jdx])
+		{
+			if (cmap[idx][jdx] == 'E')
+				set_e(cmap, imap);
+			else if (cmap[idx][jdx] == 'W')
+				set_w(cmap, imap);
+			else if (cmap[idx][jdx] == 'N')
+				set_n(cmap, imap);
+			else if (cmap[idx][jdx] == 'S')
+				set_s(cmap, imap);
+			jdx++;
+		}
+		idx++;
+	}
 }

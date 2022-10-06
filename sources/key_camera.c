@@ -6,11 +6,11 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:45:43 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/10/04 14:45:45 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/05 19:53:04 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lib/cub3D.h"
+#include "../lib/cub3D.h"
 
 void	camera_right(t_proc *proc)
 {

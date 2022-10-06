@@ -6,11 +6,11 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:34:18 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/09/22 16:34:21 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/05 19:52:38 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lib/cub3D.h"
+#include "../lib/cub3D.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

@@ -6,11 +6,11 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 18:25:22 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/10/01 18:25:43 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/05 19:53:12 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lib/cub3D.h"
+#include "../lib/cub3D.h"
 
 void	key_forward(t_proc *proc)
 {

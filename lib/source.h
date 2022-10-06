@@ -6,7 +6,7 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 14:57:35 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/09/17 14:57:37 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/05 23:11:11 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 //sort code
 # define WIDTH 1920
 # define HEIGHT 1080
-# define IMG_WIDTH 64
-# define IMG_HEIGHT 64
+# define IMG_WIDTH 256
+# define IMG_HEIGHT 256
 
 //mapcheck.c
 
@@ -66,19 +66,13 @@ void	gmap_wall_oc_check(t_proc *proc);
 //mapread4.c
 int		frgbtrans(char **rgbno);
 int		crgbtrans(char **rgbno);
-char	poles_casting(char cmap);
+void	poles_casting(char **cmap, int **imap);
 void	g_mapexportintmap(t_proc *proc);
 
 //game_build.c
 int		game_render(t_proc *proc);
 void	f_rgb_up_color(t_proc *proc);
 void	c_rgb_down_color(t_proc *proc);
-
-//game_build2.c
-void	character_rot(t_proc *proc);
-
-//game_build3.c
-void	char_lock_rot(t_proc *proc);
 
 //button_assignment.c
 int		ft_exit(void *tmp);
@@ -99,5 +93,12 @@ void	key_left(t_proc *proc);
 // kontorl edilecek
 int		key_press(t_proc *proc);
 int		print_map(t_proc *s_data);
+
+
+// poles_set
+void	set_e(char **cmap, int **imap);
+void	set_w(char **cmap, int **imap);
+void	set_s(char **cmap, int **imap);
+void	set_n(char **cmap, int **imap);
 
 #endif

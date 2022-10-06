@@ -6,11 +6,11 @@
 /*   By: aozcelik <aozcelik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:22:53 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/06/02 12:22:54 by aozcelik         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:52:30 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lib/cub3D.h"
+#include "../lib/cub3D.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {

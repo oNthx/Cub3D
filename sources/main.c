@@ -6,24 +6,28 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 18:15:02 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/09/16 18:15:04 by aozcelik         ###   ########.tr       */
+/*   Updated: 2022/10/05 19:53:21 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //gelen haritanın x ve y sını zunlugu bul hangısı buyukse o kadar bır ınt map ac (tam kare olacak sekılde) 
 //içini doldururken tab gorursen 8 atla
 
-#include "./lib/cub3D.h"
+#include "../lib/cub3D.h"
 
 static int	start_proc(t_proc *proc)
 {
+	void	*img_ptr;
+
+	img_ptr = mlx_xpm_file_to_image(proc->mlx, proc->img.ea, \
+	&proc->img.img_x, &proc->img.img_y);
 	proc->mlx = mlx_init();
 	proc->mlx_win = mlx_new_window(proc->mlx, WIDTH, HEIGHT, "Cub3D");
-	void *img_ptr = mlx_xpm_file_to_image(proc->mlx, proc->img.so , &proc->img.img_x, &proc->img.img_y);
-	proc->img.img_data_clr = (int *)mlx_get_data_addr(img_ptr, &proc->img.per_pxl, &proc->img.size_line, &proc->img.endian);
+	proc->img.img_data_clr = (int *)mlx_get_data_addr(img_ptr, \
+	&proc->img.per_pxl, &proc->img.size_line, &proc->img.endian);
 	proc->screen_img = mlx_new_image(proc->mlx, WIDTH, HEIGHT);
-	proc->screen_img_data = (int *)mlx_get_data_addr(proc->screen_img, &proc->img.per_pxl, &proc->img.size_line, &proc->img.endian);
-	int	i,j; j = 0; i = 0;
+	proc->screen_img_data = (int *)mlx_get_data_addr(proc->screen_img, \
+	&proc->img.per_pxl, &proc->img.size_line, &proc->img.endian);
 	f_rgb_up_color(proc);
 	c_rgb_down_color(proc);
 	print_map(proc);
