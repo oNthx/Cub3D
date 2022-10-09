@@ -46,15 +46,10 @@ typedef struct s_img
 	char	*so;
 	char	*we;
 	char	*ea;
+	void	*img;
+	char	*imgadd;
 	int		img_x;
 	int		img_y;
-	char	*imgadd;
-	void	*img;
-	int		bbp;
-	int		*img_data_clr;
-	int		per_pxl;
-	int		size_line;
-	int		endian;
 }		t_img;
 
 typedef struct s_plyr
@@ -63,25 +58,60 @@ typedef struct s_plyr
 	double	loc_y;
 	double	dir_x;
 	double	dir_y;
-	double	cam_x;
-	double	cam_y;
+	double	sdist_x;
+	double	sdist_y;
+	double	ddist_x;
+	double	ddist_y;
 	double	movespd;
 	double	rotspd;
+	double	cam_x;
+	double	cam_y;
+	double	map_x;
+	double	map_y;
+	double	wall_x;
+	double	wall_y;
+	double	wall_dist;
+	int		wall_pass;
+	int		wall_dir;
+	int		sx;
+	int		sy;
+
 }		t_plyr;
+
+typedef struct s_cam
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	int		display;
+}		t_cam;
 
 typedef struct s_proc
 {
 	void	*mlx;
 	void	*mlx_win;
-	void	**img_path;
+	void	*mlx_img;
+
 	char	**map;
-	int		*screen_img_data;
-	void	*screen_img;
 	int		row_cnt;
 	int		row_len;
 	int		new_cnt;
 	int		c_arg;
 	int		c_idx;
+
+	char	*imgaddr;
+	int		bpp;
+	int		line_size;
+	int		endian;
+	int		color;
+	int		x;
+	int		y;
+	int		draw_start;
+	int		draw_end;
+	int		lineheight;
 	t_rpg	f_rgb;
 	t_rpg	c_rgb;
 	t_kbd	kbd;
@@ -90,6 +120,7 @@ typedef struct s_proc
 	t_img	screen;
 	t_gmap	g_map;
 	t_plyr	g_plyr;
+	t_cam	t_cam;
 }		t_proc;
 
 #endif

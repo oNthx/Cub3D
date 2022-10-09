@@ -6,7 +6,7 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:46:59 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/10/05 19:54:29 by bozgur           ###   ########.fr       */
+/*   Updated: 2022/10/10 01:18:00 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static	void	rgp_zero(t_rpg *rgb)
 	rgb->rgb_r = 0;
 	rgb->rgb_g = 0;
 	rgb->rgb_b = 0;
+	rgb->rgb = 0;
 }
 
 int	set_zero(t_proc *proc)

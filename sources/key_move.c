@@ -6,48 +6,77 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 18:25:22 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/10/05 19:53:12 by bozgur           ###   ########.fr       */
+/*   Updated: 2022/10/10 01:16:24 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/cub3D.h"
 
-void	key_forward(t_proc *proc)
+static void	rotate_cam(t_proc *proc, t_cam *cam)
 {
-	if (!proc->g_map.mapi[(int)(proc->g_plyr.loc_x + proc->g_plyr.dir_x * \
-	proc->g_plyr.movespd)][(int)(proc->g_plyr.loc_y)])
-		proc->g_plyr.loc_x += proc->g_plyr.dir_x * proc->g_plyr.movespd;
-	if (!proc->g_map.mapi[(int)(proc->g_plyr.loc_x)][(int)(proc->g_plyr.loc_y + \
-	proc->g_plyr.dir_y * proc->g_plyr.movespd)])
-		proc->g_plyr.loc_y += proc->g_plyr.dir_y * proc->g_plyr.movespd;
+	double	old_dir_y;
+	double	old_plane_y;
+
+	old_dir_y = cam->dir_y;
+	cam->dir_y = cam->dir_y * cos(-proc->g_plyr.rotspd) - cam->dir_x \
+		* sin(-proc->g_plyr.rotspd);
+	cam->dir_x = old_dir_y * sin(-proc->g_plyr.rotspd) + cam->dir_x \
+		* cos(-proc->g_plyr.rotspd);
+	old_plane_y = cam->plane_y;
+	cam->plane_y = cam->plane_y * cos(-proc->g_plyr.rotspd) - cam->plane_x \
+		* sin(-proc->g_plyr.rotspd);
+	cam->plane_x = old_plane_y * sin(-proc->g_plyr.rotspd) + cam->plane_x \
+		* cos(-proc->g_plyr.rotspd);
 }
 
-void	key_backward(t_proc *proc)
+static void	key_move2(t_proc *proc, t_cam *cam, int **map)
 {
-	if (!proc->g_map.mapi[(int)(proc->g_plyr.loc_x - proc->g_plyr.dir_x * \
-	proc->g_plyr.movespd)][(int)(proc->g_plyr.loc_y)])
-		proc->g_plyr.loc_x -= proc->g_plyr.dir_x * proc->g_plyr.movespd;
-	if (!proc->g_map.mapi[(int)(proc->g_plyr.loc_x)][(int)(proc->g_plyr.loc_y - \
-	proc->g_plyr.dir_y * proc->g_plyr.movespd)])
-		proc->g_plyr.loc_y -= proc->g_plyr.dir_y * proc->g_plyr.movespd;
+	if (proc->kbd.l || proc->kbd.r)
+	{
+		rotate_cam(proc, cam);
+	}
+	if (proc->kbd.d)
+	{
+		if (!map[(int)(cam->pos_y + cam->plane_y * proc->g_plyr.movespd)]
+			[(int)cam->pos_x])
+			cam->pos_y += cam->plane_y * proc->g_plyr.movespd;
+		if (!map[(int)cam->pos_y]
+			[(int)(cam->pos_x + cam->plane_x * proc->g_plyr.movespd)])
+			cam->pos_x += cam->plane_x * proc->g_plyr.movespd;
+	}
+	if (proc->kbd.a)
+	{
+		if (!map[(int)(cam->pos_y - cam->plane_y * proc->g_plyr.movespd)]
+			[(int)cam->pos_x])
+			cam->pos_y -= cam->plane_y * proc->g_plyr.movespd;
+		if (!map[(int)cam->pos_y]
+			[(int)(cam->pos_x - cam->plane_x * proc->g_plyr.movespd)])
+			cam->pos_x -= cam->plane_x * proc->g_plyr.movespd;
+	}
 }
 
-void	key_right(t_proc *proc)
+void	key_move(t_proc *proc, t_cam *cam)
 {
-	if (!proc->g_map.mapi[(int)(proc->g_plyr.loc_x + proc->g_plyr.dir_x * \
-	proc->g_plyr.movespd)][(int)(proc->g_plyr.loc_y)])
-		proc->g_plyr.loc_y -= proc->g_plyr.dir_x * proc->g_plyr.movespd;
-	if (!proc->g_map.mapi[(int)(proc->g_plyr.loc_x)][(int)(proc->g_plyr.loc_y + \
-	proc->g_plyr.dir_y * proc->g_plyr.movespd)])
-		proc->g_plyr.loc_x += proc->g_plyr.dir_y * proc->g_plyr.movespd;
-}
+	int	**map;
 
-void	key_left(t_proc *proc)
-{
-	if (!proc->g_map.mapi[(int)(proc->g_plyr.loc_x - proc->g_plyr.dir_x * \
-	proc->g_plyr.movespd)][(int)(proc->g_plyr.loc_y)])
-		proc->g_plyr.loc_y += proc->g_plyr.dir_x * proc->g_plyr.movespd;
-	if (!proc->g_map.mapi[(int)(proc->g_plyr.loc_x)][(int)(proc->g_plyr.loc_y - \
-	proc->g_plyr.dir_y * proc->g_plyr.movespd)])
-		proc->g_plyr.loc_x -= proc->g_plyr.dir_y * proc->g_plyr.movespd;
+	map = proc->g_map.mapi;
+	if (proc->kbd.w)
+	{
+		if (!map[(int)(cam->pos_y + cam->dir_y * proc->g_plyr.movespd)] \
+		[(int)cam->pos_x])
+			cam->pos_y += cam->dir_y * proc->g_plyr.movespd;
+		if (!map[(int)cam->pos_y][(int)(cam->pos_x + cam->dir_x \
+			* proc->g_plyr.movespd)])
+			cam->pos_x += cam->dir_x * proc->g_plyr.movespd;
+	}
+	if (proc->kbd.s)
+	{
+		if (!map[(int)(cam->pos_y - cam->dir_y * proc->g_plyr.movespd)] \
+			[(int)cam->pos_x])
+			cam->pos_y -= cam->dir_y * proc->g_plyr.movespd;
+		if (!map[(int)cam->pos_y][(int)(cam->pos_x - cam->dir_x \
+			* proc->g_plyr.movespd)])
+			cam->pos_x -= cam->dir_x * proc->g_plyr.movespd;
+	}
+	key_move2(proc, cam, map);
 }

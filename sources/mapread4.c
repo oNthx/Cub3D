@@ -6,7 +6,7 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:01:13 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/10/05 19:54:19 by bozgur           ###   ########.fr       */
+/*   Updated: 2022/10/10 01:17:21 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ int	frgbtrans(char **rgbno)
 	int		rgbnu;
 
 	frgb = ft_strjoin(rgbno[0], rgbno[1], rgbno[2]);
+	free(rgbno[0]);
+	free(rgbno[1]);
+	free(rgbno[2]);
 	rgbnu = ft_atoi(frgb);
+	free(frgb);
 	return (rgbnu);
 }
 
@@ -28,7 +32,11 @@ int	crgbtrans(char **rgbno)
 	int		rgbnu;
 
 	crgb = ft_strjoin(rgbno[0], rgbno[1], rgbno[2]);
+	free(rgbno[0]);
+	free(rgbno[1]);
+	free(rgbno[2]);
 	rgbnu = ft_atoi(crgb);
+	free(crgb);
 	return (rgbnu);
 }
 
@@ -63,9 +71,9 @@ static int	g_maptointmap(t_proc *proc)
 
 void	g_mapexportintmap(t_proc *proc)
 {	
+	int		idx;
 	int		i;
 	int		j;
-	int		idx;
 	int		**imap;
 	char	**cmap;
 
@@ -80,32 +88,19 @@ void	g_mapexportintmap(t_proc *proc)
 		j++;
 	}
 	i = 0;
-	poles_casting(cmap, imap);
-	proc->g_map.mapi = imap;
-}
-
-void	poles_casting(char **cmap, int **imap)
-{
-	int	idx;
-	int	jdx;
-
-	idx = 0;
-	jdx = 0;
-	while (cmap[idx])
+	while (cmap[i])
 	{
-		jdx = 0;
-		while (cmap[idx][jdx])
+		j = 0;
+		while (cmap[i][j])
 		{
-			if (cmap[idx][jdx] == 'E')
-				set_e(cmap, imap);
-			else if (cmap[idx][jdx] == 'W')
-				set_w(cmap, imap);
-			else if (cmap[idx][jdx] == 'N')
-				set_n(cmap, imap);
-			else if (cmap[idx][jdx] == 'S')
-				set_s(cmap, imap);
-			jdx++;
+			if ((cmap[i][j] == 'N' || cmap[i][j] == 'S' || \
+			cmap[i][j] == 'W' || cmap[i][j] == 'E' || cmap[i][j] == ' '))
+				cmap[i][j] = poles_casting(cmap[i][j], i, j, proc);
+			idx = ft_atoic(cmap[i][j]);
+			imap[i][j] = idx;
+			j++;
 		}
-		idx++;
+		i++;
 	}
+	proc->g_map.mapi = imap;
 }

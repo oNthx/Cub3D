@@ -6,7 +6,7 @@
 /*   By: aozcelik <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 15:08:23 by aozcelik          #+#    #+#             */
-/*   Updated: 2022/10/05 19:54:06 by bozgur           ###   ########.fr       */
+/*   Updated: 2022/10/10 01:17:00 by bozgur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ static void	check_trans_frgb(char *Frgb, t_proc *proc)
 	if ((proc->f_rgb.rgb_r >= 0 && proc->f_rgb.rgb_r <= 255) \
 		&& (proc->f_rgb.rgb_g >= 0 && proc->f_rgb.rgb_g <= 255) \
 		&& (proc->f_rgb.rgb_b >= 0 && proc->f_rgb.rgb_b <= 255))
+	{
 		proc->f_rgb.rgb = frgbtrans(rgbno);
+		free(rgbno);
+	}	
 	else
 	{
 		printf("Error\nFrgb not true");
@@ -81,7 +84,10 @@ static void	check_trans_crgb(char *Crgb, t_proc *proc)
 	if ((proc->c_rgb.rgb_r >= 0 && proc->c_rgb.rgb_r <= 255) \
 		&& (proc->c_rgb.rgb_g >= 0 && proc->c_rgb.rgb_g <= 255) \
 		&& (proc->c_rgb.rgb_b >= 0 && proc->c_rgb.rgb_b <= 255))
+	{
 		proc->c_rgb.rgb = crgbtrans(rgbno);
+		free(rgbno);	
+	}
 	else
 	{
 		printf("Error\nCrgb not true");
